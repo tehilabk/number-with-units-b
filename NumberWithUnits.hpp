@@ -6,7 +6,7 @@
 using namespace std;
 
 namespace ariel {
-    
+
     const double EPS = 0.001;
     class NumberWithUnits{
 
@@ -15,7 +15,7 @@ namespace ariel {
         string type;
 
     public:
-        NumberWithUnits(double val, string type);
+        NumberWithUnits(double val, const string &type);
 
         static void read_units(ifstream& file);
 

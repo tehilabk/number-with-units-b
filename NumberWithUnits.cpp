@@ -8,7 +8,7 @@ namespace ariel {
 
     map<string, map<string, double>> mapConvert; //<type,<type convert,val>
 
-    NumberWithUnits::NumberWithUnits(double val, string type){
+    NumberWithUnits::NumberWithUnits(double val,const string &type){
         try {
             mapConvert.at(type);
         }
@@ -19,7 +19,7 @@ namespace ariel {
         this->type = type;
     }
 
-       void updateTypes(string firstType,string secondType){
+       void updateTypes(const string &firstType, const string &secondType){
           for(auto &T : mapConvert[firstType]){
                 double val = (mapConvert[T.first][firstType])*(mapConvert[firstType][secondType]);
                 mapConvert[T.first][secondType] = val;
@@ -28,10 +28,10 @@ namespace ariel {
     }
 
     void NumberWithUnits::read_units(ifstream& file){
-        double firstVal;
+        double firstVal=0;
         string firstType;
         string equal;
-        double secondVal;
+        double secondVal=0;
         string secondType;
         if(!file){ //check if the file exists
             return;
@@ -70,7 +70,7 @@ namespace ariel {
         return in;
     }
 
-    double convertToFirst (string firstType, string secondType, double val){
+    double convertToFirst (const string &firstType, const string &secondType, const double val){
          try {
             mapConvert.at(firstType).at(secondType);
         }
