@@ -132,45 +132,45 @@ namespace ariel {
         return copy;    }
 
 
-    NumberWithUnits NumberWithUnits::operator*(const double x) {
+    NumberWithUnits NumberWithUnits::operator*(const double x) const{
         return NumberWithUnits(x*this->val, this->type);
     }
 
-    NumberWithUnits operator*(const double x, NumberWithUnits& num) {
-        return NumberWithUnits(x*num.val, num.type);
+    NumberWithUnits operator*(const double x, const NumberWithUnits& num) {
+        return num*x;
     }
   
 
     bool NumberWithUnits:: operator>(const NumberWithUnits& num) const{
         double numConvert = convertToFirst(num.type, this->type, num.val);
-        return this->val > numConvert;
+        return this->val > numConvert+EPS;
 
     }
     
     bool NumberWithUnits::operator<(const NumberWithUnits& num) const{
         double numConvert = convertToFirst(num.type, this->type, num.val);
-        return this->val < numConvert;
+        return this->val+EPS < numConvert;
     }
 
     bool NumberWithUnits::operator>=(const NumberWithUnits& num) const{
         double numConvert = convertToFirst(num.type, this->type, num.val);
-        return this->val >= numConvert;
+        return this->val >= numConvert+EPS || abs(this->val - numConvert)<EPS;
     }
 
     bool NumberWithUnits::operator<=(const NumberWithUnits& num) const{
         double numConvert = convertToFirst(num.type, this->type, num.val);
-        return this->val <= numConvert;
+        return this->val+EPS <= numConvert || abs(this->val - numConvert)<EPS;
 
     }
 
     bool NumberWithUnits::operator==(const NumberWithUnits& num) const{
         double numConvert = convertToFirst(num.type, this->type, num.val);
-        return this->val == numConvert;
+        return abs(this->val - numConvert)<EPS;
     }
 
     bool NumberWithUnits::operator!=(const NumberWithUnits& num) const{
         double numConvert = convertToFirst(num.type, this->type, num.val);
-        return this->val != numConvert;
+        return !(abs(this->val - numConvert)<EPS);
     }
 
 }
