@@ -49,6 +49,7 @@ namespace ariel {
         return out<<num.val<<"["<<num.type<<"]";
     }
 
+ 
     istream& operator>>(istream& in, NumberWithUnits& num){
         string input;
         char c = ' ';
@@ -70,7 +71,7 @@ namespace ariel {
         return in;
     }
 
-    double convertToFirst (const string &firstType, const string &secondType, const double val){
+    double NumberWithUnits::convertToFirst (const string &firstType, const string &secondType, const double val){
          try {
             mapConvert.at(firstType).at(secondType);
         }
@@ -91,7 +92,7 @@ namespace ariel {
     return NumberWithUnits(this->val+numConvert, this->type);
 
     }
-    
+     
     NumberWithUnits& NumberWithUnits::operator+=(const NumberWithUnits& num) {
         this->val += convertToFirst(num.type, this->type, num.val);
         return *this;
@@ -173,4 +174,14 @@ namespace ariel {
         return !(abs(this->val - numConvert)<EPS);
     }
 
+
+    void NumberWithUnits::printer(){
+        for(auto &v: mapConvert ){
+            cout << v.first << endl;
+            for(auto &g: mapConvert[v.first]){
+                cout << g.first << "=" << g.second << endl;
+            }
+            cout << "******"<< endl;
+         }
+    }
 }

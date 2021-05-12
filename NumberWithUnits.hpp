@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <map>
-
+#include <algorithm>
 using namespace std;
 
 namespace ariel {
@@ -46,5 +46,7 @@ namespace ariel {
         bool operator==(const NumberWithUnits& num) const;
         bool operator!=(const NumberWithUnits& num) const;
 
+        double static convertToFirst (const string &firstType, const string &secondType, const double val);
+        void static printer ();
     };
 }

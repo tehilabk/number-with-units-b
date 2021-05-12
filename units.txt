@@ -1,0 +1,9 @@
+1 km = 1000 m
+1 m = 100 cm
+1 USD = 3.24 ILS
+1 TRY =  0.10 EUR
+1 GBP = 1.39 USD
+1 EUR = 0.87 GBP
+1 AED = 0.27 USD
+1 INR = 0.01 USD
+1 CNY = 0.15 USD
